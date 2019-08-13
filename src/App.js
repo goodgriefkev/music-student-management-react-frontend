@@ -71,6 +71,7 @@ class App extends Component {
         <Router>
           <div>
             <h1>Stephen Gilbert Musical Instruction</h1>
+            <h2>Student Portal</h2>
 
             <Route exact
               path='/'

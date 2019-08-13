@@ -4,11 +4,19 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
+let user = cookies.get('user')
+
 class LogIn extends Component {
 
   state = {
     username: '',
     password: ''
+  }
+
+  componentDidMount() {
+    if (user) {
+      this.props.history.push('/student')
+    }
   }
 
   handleChange = (event) => {
