@@ -7,7 +7,7 @@ class CreateAccount extends Component {
     password: '',
     name: '',
     instrument: '',
-    location: ''
+    location: '',
   }
 
   handleChange = (event) => {
@@ -17,6 +17,11 @@ class CreateAccount extends Component {
   handleCreateAccount = (event) => {
     event.preventDefault()
     fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
       body:
         JSON.stringify({
           user: {
@@ -26,13 +31,9 @@ class CreateAccount extends Component {
             instrument: this.state.instrument,
             location: this.state.location
           }
-        }),
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
+        })
     })
+      .then(console.log(this.state))
       .then(response => response.json())
       .then(json => console.log(json))
   }
@@ -42,61 +43,68 @@ class CreateAccount extends Component {
       <div>
         <h2>Create Account</h2>
         <form onSubmit={this.handleCreateAccount}>
-          <input
-            type='text'
-            id='username'
-            name='username'
-            onChange={this.handleChange}
-            value={this.state.username}
-            placeholder='Username'
-          />
+          <label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={this.handleChange}
+              value={this.state.username}
+              placeholder="Username"
+            />
+          </label>
           <br/>
-          <input
-            type='password'
-            id='password'
-            name='password'
-            onChange={this.handleChange}
-            value={this.state.password}
-            placeholder='Password'
-          />
+          <label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+              placeholder="Password"
+            />
+          </label>
           <br/>
-          <input
-            type='text'
-            id='name'
-            name='name'
-            onChange={this.handleChange}
-            value={this.state.name}
-            placeholder='Name'
-          />
+          <label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              onChange={this.handleChange}
+              value={this.state.name}
+              placeholder="Name"
+            />
+          </label>
           <br/>
           <label>
             Instrument:
             <select
-              instrument={this.state.instrument}
+              id="instrument"
+              value={this.state.instrument}
               onChange={this.handleChange}
             >
-              <option instrument=''></option>
-              <option instrument='guitar'>Guitar</option>
-              <option instrument='bass'>Bass</option>
-              <option instrument='drums'>Drums</option>
-              <option instrument='piano'>Piano</option>
+              <option value="guitar">Guitar</option>
+              <option value="bass">Bass</option>
+              <option value="drums">Drums</option>
+              <option value="piano">Piano</option>
             </select>
           </label>
           <br/>
           <label>
             Location:
             <select
-              location={this.state.location}
+              id="location"
+              value={this.state.location}
               onChange={this.handleChange}
             >
-              <option location=''></option>
-              <option location='altus'>Altus</option>
-              <option location='quanah'>Quanah</option>
-              <option location='vernon'>Vernon</option>
+              <option value=""></option>
+              <option value="altus">Altus</option>
+              <option value="quanah">Quanah</option>
+              <option value="vernon">Vernon</option>
             </select>
           </label>
           <br/>
-          <input type='submit' value='Create Account' />
+          <input type="submit" value="Create Account" />
         </form>
       </div>
     )
