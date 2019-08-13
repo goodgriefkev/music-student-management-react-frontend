@@ -33,14 +33,16 @@ class LogIn extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        cookies.set('token', json.token)
         if (json.user) {
+
+          cookies.set('token', json.token, { path: '/' })
           this.props.getCurrentUser(json.user.id)
           this.setState({
             username: '',
             password: '',
             credentialError: false
           })
+                    cookies.set('user', json.user.id, { path: '/' })
         } else {
           this.setState({
             password: '',

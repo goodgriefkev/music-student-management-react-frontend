@@ -10,6 +10,7 @@ let baseURL = 'http://localhost:3000'
 const cookies = new Cookies()
 
 let token = cookies.get('token')
+let user = cookies.get('user')
 
 class App extends Component {
 
@@ -18,25 +19,34 @@ class App extends Component {
     }
 
   componentDidMount() {
-    this.getStudents()
-    this.getAssignments()
+    // this.getStudents()
+    // this.getAssignments()
+    // this.getCurrentUser()
+    this.checkCurrentUser()
   }
 
-  getStudents () {
-    fetch('/users')
-      .then(response => response.json())
-      .then(json => console.log(json))
-      .catch(error => console.error(error))
-  }
+  // getStudents () {
+  //   fetch('/users')
+  //     .then(response => response.json())
+  //     .then(json => console.log(json))
+  //     .catch(error => console.error(error))
+  // }
+  //
+  // getAssignments () {
+  //   fetch('/assignments')
+  //     .then(response => response.json())
+  //     .then(json => console.log(json))
+  //     .catch(error => console.error(error))
+  // }
 
-  getAssignments () {
-    fetch('/assignments')
-      .then(response => response.json())
-      .then(json => console.log(json))
-      .catch(error => console.error(error))
+  checkCurrentUser = () => {
+    if (user) {
+      this.getCurrentUser(user)
+    }
   }
 
   getCurrentUser = (user_id) => {
+
     fetch('/users/' + user_id, {
       method: 'GET',
       headers: {
@@ -46,7 +56,8 @@ class App extends Component {
       }
     })
     .then(response => response.json())
-    .then(json => this.setState({currentUser: json}))
+    .then(json => {
+      this.setState({currentUser: json})})
   }
 
   render() {
