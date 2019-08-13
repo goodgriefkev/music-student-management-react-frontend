@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import CreateAccount from './components/CreateAccount.js'
 import LogIn from './components/LogIn.js'
 import Student from './components/Student.js'
 import './App.css';
@@ -76,6 +77,9 @@ class App extends Component {
         <Student
           currentUser={this.state.currentUser}
           handleLogOut={this.handleLogOut}
+        />
+        <CreateAccount
+          baseURL={baseURL}
         />
       </div>
     )
