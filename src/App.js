@@ -38,8 +38,18 @@ class App extends Component {
   getAssignments () {
     fetch('/assignments')
       .then(response => response.json())
-      .then(json => this.setState({assignments: json}))
+      .then(json => {
+        json.map((assignment) => {
+          if(assignment.user_id == user) {
+            console.log(assignment)
+          }
+        })
+      })
       .catch(error => console.error(error))
+  }
+
+  getUsersAssignments () {
+
   }
 
   checkCurrentUser = () => {
@@ -77,7 +87,7 @@ class App extends Component {
         'Authorization': 'Bearer ' + token
       }
     })
-    .then( () => this.handleLogOut)
+    .then(this.handleLogOut)
     .catch(error => console.log(error))
   }
 
@@ -107,7 +117,6 @@ class App extends Component {
                 <Student
                   {...routeProps}
                   currentUser={this.state.currentUser}
-                  getCurrentUser={this.getCurrentUser}
                   assignments={this.state.assignments}
                   handleLogOut={this.handleLogOut}
                   handleDeleteUser={this.handleDeleteUser}

@@ -29,7 +29,10 @@ class Student extends Component {
                   <td>{this.props.currentUser.location}</td>
                 </tr>
                 <tr>
-                  <th>Assignments: </th>
+                  <th>Assignments:
+
+
+                  </th>
                   <td> </td>
                 </tr>
               </tbody>
