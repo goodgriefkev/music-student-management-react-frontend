@@ -16,12 +16,13 @@ let user = cookies.get('user')
 class App extends Component {
 
   state = {
-    currentUser: undefined
+    currentUser: undefined,
+    assignments: []
     }
 
   componentDidMount() {
     // this.getStudents()
-    // this.getAssignments()
+    this.getAssignments()
     // this.getCurrentUser()
     this.checkCurrentUser()
   }
@@ -33,12 +34,13 @@ class App extends Component {
   //     .catch(error => console.error(error))
   // }
   //
-  // getAssignments () {
-  //   fetch('/assignments')
-  //     .then(response => response.json())
-  //     .then(json => console.log(json))
-  //     .catch(error => console.error(error))
-  // }
+
+  getAssignments () {
+    fetch('/assignments')
+      .then(response => response.json())
+      .then(json => this.setState({assignments: json}))
+      .catch(error => console.error(error))
+  }
 
   checkCurrentUser = () => {
     if (user) {
@@ -63,6 +65,20 @@ class App extends Component {
   handleLogOut = () => {
     cookies.remove('token')
     cookies.remove('user')
+
+  }
+
+  handleDeleteUser = (user_id) => {
+    fetch('/users/' + user_id, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then( () => this.handleLogOut)
+    .catch(error => console.log(error))
   }
 
   render() {
@@ -91,7 +107,10 @@ class App extends Component {
                 <Student
                   {...routeProps}
                   currentUser={this.state.currentUser}
+                  getCurrentUser={this.getCurrentUser}
+                  assignments={this.state.assignments}
                   handleLogOut={this.handleLogOut}
+                  handleDeleteUser={this.handleDeleteUser}
                 />
               )}
             />
