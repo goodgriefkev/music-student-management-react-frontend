@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 import CreateAccount from './components/CreateAccount.js'
@@ -67,21 +67,46 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Stephen Gilbert Musical Instruction</h1>
-        <LogIn
-          baseURL={baseURL}
-          getCurrentUser={this.getCurrentUser}
-          currentUser={this.state.currentUser}
-        />
-        <Student
-          currentUser={this.state.currentUser}
-          handleLogOut={this.handleLogOut}
-        />
-        <CreateAccount
-          baseURL={baseURL}
-        />
-      </div>
+      <>
+        <Router>
+          <div>
+            <h1>Stephen Gilbert Musical Instruction</h1>
+
+            <Route exact
+              path='/'
+              render={(routeProps) => (
+                <LogIn
+                  {...routeProps}
+                  baseURL={baseURL}
+                  getCurrentUser={this.getCurrentUser}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+
+            <Route
+              path='/student'
+              render={(routeProps) => (
+                <Student
+                  {...routeProps}
+                  currentUser={this.state.currentUser}
+                  handleLogOut={this.handleLogOut}
+                />
+              )}
+            />
+
+            <Route
+              path='/createaccount'
+              render={(routeProps) => (
+                <CreateAccount
+                  baseURL={baseURL}
+                />
+              )}
+            />
+
+          </div>
+        </Router>
+      </>
     )
   }
 }

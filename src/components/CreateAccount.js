@@ -14,16 +14,18 @@ class CreateAccount extends Component {
     this.setState({[event.target.id]: event.target.value})
   }
 
-  handleSubmit = (event) => {
+  handleCreateAccount = (event) => {
     event.preventDefault()
-    fetch(this.props.baseURL + '/users', {
+    fetch('/users', {
       body:
         JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-          name: this.state.name,
-          instrument: this.state.instrument,
-          location: this.state.location
+          user: {
+            username: this.state.username,
+            password: this.state.password,
+            name: this.state.name,
+            instrument: this.state.instrument,
+            location: this.state.location
+          }
         }),
       method: 'POST',
       headers: {
@@ -39,7 +41,7 @@ class CreateAccount extends Component {
     return (
       <div>
         <h2>Create Account</h2>
-        <form>
+        <form onSubmit={this.handleCreateAccount}>
           <input
             type='text'
             id='username'
