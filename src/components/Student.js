@@ -15,9 +15,7 @@ class Student extends Component {
           </>
           :
           <>
-            <h2>
-              No user logged in.
-            </h2>
+            {this.props.history.push('/')}
           </>
         }
 
