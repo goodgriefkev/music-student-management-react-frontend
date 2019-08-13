@@ -5,6 +5,7 @@ class CreateAccount extends Component {
   state = {
     username: '',
     password: '',
+    confirmPassword: '',
     name: '',
     instrument: '',
     location: '',
@@ -16,27 +17,32 @@ class CreateAccount extends Component {
 
   handleCreateAccount = (event) => {
     event.preventDefault()
-    fetch('/users', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body:
-        JSON.stringify({
-          user: {
-            username: this.state.username,
-            password: this.state.password,
-            name: this.state.name,
-            instrument: this.state.instrument,
-            location: this.state.location
-          }
-        })
-    })
-      .then(console.log(this.state))
-      .then(response => response.json())
-      .then(json => console.log(json))
+    const { password, confirmPassword } = this.state
+    if (password !== confirmPassword) {
+      alert("Passwords do not match, please try again")
+    } else {
+      fetch('/users', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body:
+          JSON.stringify({
+            user: {
+              username: this.state.username,
+              password: this.state.password,
+              name: this.state.name,
+              instrument: this.state.instrument,
+              location: this.state.location
+            }
+          })
+      })
+        .then(response => response.json())
+        .then(json => {console.log(json)})
+    }
   }
+
 
   render() {
     return (
@@ -67,6 +73,17 @@ class CreateAccount extends Component {
           <br/>
           <label>
             <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={this.handleChange}
+              value={this.state.confirmPassword}
+              placeholder="Confirm Password"
+            />
+          </label>
+          <br/>
+          <label>
+            <input
               type="text"
               id="name"
               name="name"
@@ -83,6 +100,7 @@ class CreateAccount extends Component {
               value={this.state.instrument}
               onChange={this.handleChange}
             >
+              <option value=""></option>
               <option value="guitar">Guitar</option>
               <option value="bass">Bass</option>
               <option value="drums">Drums</option>
