@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Cookies from 'universal-cookie'
+
 import CreateAccount from './components/CreateAccount.js'
 import LogIn from './components/LogIn.js'
 import Student from './components/Student.js'
+
 import './App.css';
 
-import Cookies from 'universal-cookie'
-
-let baseURL = 'http://localhost:3000'
-
+const baseURL = 'http://localhost:3000'
 const cookies = new Cookies()
-
 let token = cookies.get('token')
 let user = cookies.get('user')
 
