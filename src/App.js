@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   getCurrentUser = (user_id) => {
-
     fetch('/users/' + user_id, {
       method: 'GET',
       headers: {
@@ -60,6 +59,11 @@ class App extends Component {
       this.setState({currentUser: json})})
   }
 
+  handleLogOut = () => {
+    cookies.remove('token')
+    cookies.remove('user')
+  }
+
   render() {
     return (
       <div>
@@ -71,6 +75,7 @@ class App extends Component {
         />
         <Student
           currentUser={this.state.currentUser}
+          handleLogOut={this.handleLogOut}
         />
       </div>
     )

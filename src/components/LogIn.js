@@ -34,7 +34,7 @@ class LogIn extends Component {
       .then(response => response.json())
       .then(json => {
         if (json.user) {
-
+          cookies.set('user', json.user.id, { path: '/' })
           cookies.set('token', json.token, { path: '/' })
           this.props.getCurrentUser(json.user.id)
           this.setState({
@@ -42,7 +42,6 @@ class LogIn extends Component {
             password: '',
             credentialError: false
           })
-                    cookies.set('user', json.user.id, { path: '/' })
         } else {
           this.setState({
             password: '',

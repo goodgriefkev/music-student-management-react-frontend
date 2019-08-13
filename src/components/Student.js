@@ -9,6 +9,9 @@ class Student extends Component {
             <h2>
               You are logged in as {this.props.currentUser.username}
             </h2>
+            <button onClick={this.props.handleLogOut}>
+              Sign Out
+            </button>
           </>
           :
           <>
