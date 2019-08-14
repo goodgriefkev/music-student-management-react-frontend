@@ -17,6 +17,7 @@ class App extends Component {
 
   state = {
     currentUser: undefined,
+    loggedIn: false,
     assignments: [],
     userAssignments: []
     }
@@ -53,6 +54,11 @@ class App extends Component {
       .catch(error => console.error(error))
   }
 
+  handleLogIn = () => {
+    console.log("handle log in ran")
+    this.setState({loggedIn: true})
+  }
+
   checkCurrentUser = () => {
     if (user) {
       this.getCurrentUser(user)
@@ -70,13 +76,17 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(json => {
-      this.setState({currentUser: json})})
+      this.setState({currentUser: json})
+    })
+    .then( () => {
+      this.handleLogIn()
+    })
   }
 
   handleLogOut = () => {
     cookies.remove('token')
     cookies.remove('user')
-
+    this.setState({loggedIn: false})
   }
 
   handleDeleteUser = (user_id) => {
@@ -106,6 +116,7 @@ class App extends Component {
                 <LogIn
                   {...routeProps}
                   baseURL={baseURL}
+                  handleLogIn={this.handleLogIn}
                   getCurrentUser={this.getCurrentUser}
                   currentUser={this.state.currentUser}
                 />
@@ -117,7 +128,9 @@ class App extends Component {
               render={(routeProps) => (
                 <Student
                   {...routeProps}
+                  loggedIn={this.state.loggedIn}
                   currentUser={this.state.currentUser}
+                  getCurrentUser={this.getCurrentUser}
                   userAssignments={this.state.userAssignments}
                   handleLogOut={this.handleLogOut}
                   handleDeleteUser={this.handleDeleteUser}
