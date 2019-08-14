@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import {
   Container,
   Form,
@@ -76,6 +77,7 @@ class LogIn extends Component {
   render() {
     return (
       <div>
+      <Container>
         <h4 textalign='center'>Sign In</h4>
         <Form onSubmit={this.handleSubmitLogIn}>
           <FormGroup>
@@ -102,6 +104,10 @@ class LogIn extends Component {
               type='submit'
               value='Sign In'
             />
+            <br/>
+            <h4>
+              <Link to='/createaccount'>Create Account</Link>
+            </h4>
           </FormGroup>
         </Form>
         {
@@ -109,6 +115,7 @@ class LogIn extends Component {
           <h2>Username or Password Incorrect</h2> :
           null
         }
+        </Container>
       </div>
     )
   }

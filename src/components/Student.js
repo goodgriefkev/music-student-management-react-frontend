@@ -110,9 +110,9 @@ class Student extends Component {
           </>
           :
           <>
-            <h3>
+            <h5>
               <Link to='/'>Click here to Sign In</Link>
-            </h3>
+            </h5>
           </>
         }
         </Container>
