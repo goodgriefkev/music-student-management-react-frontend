@@ -1,7 +1,7 @@
 {
   "name": "music-student-management-react-frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000/",
+  "proxy": "https://music-student-management-api.herokuapp.com/",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",

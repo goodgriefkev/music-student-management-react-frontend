@@ -9,6 +9,8 @@ import CreateAccount from './components/CreateAccount.js'
 import LogIn from './components/LogIn.js'
 import Student from './components/Student.js'
 
+import { BASE_URL } FROM './constants'
+
 import './App.css';
 
 const baseURL = 'http://localhost:3000'
