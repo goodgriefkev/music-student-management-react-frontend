@@ -17,7 +17,8 @@ class App extends Component {
 
   state = {
     currentUser: undefined,
-    assignments: []
+    assignments: [],
+    userAssignments: []
     }
 
   componentDidMount() {
@@ -36,20 +37,20 @@ class App extends Component {
   //
 
   getAssignments () {
+    let assignmentData = {
+      singleUserAssignments: []
+    }
     fetch('/assignments')
       .then(response => response.json())
       .then(json => {
         json.map((assignment) => {
           if(assignment.user_id == user) {
-            console.log(assignment)
+            assignmentData.singleUserAssignments.push(assignment)
           }
         })
       })
+      .then(this.setState({userAssignments: assignmentData.singleUserAssignments}))
       .catch(error => console.error(error))
-  }
-
-  getUsersAssignments () {
-
   }
 
   checkCurrentUser = () => {
@@ -117,7 +118,7 @@ class App extends Component {
                 <Student
                   {...routeProps}
                   currentUser={this.state.currentUser}
-                  assignments={this.state.assignments}
+                  userAssignments={this.state.userAssignments}
                   handleLogOut={this.handleLogOut}
                   handleDeleteUser={this.handleDeleteUser}
                 />
@@ -132,7 +133,6 @@ class App extends Component {
                 />
               )}
             />
-
           </div>
         </Router>
       </>

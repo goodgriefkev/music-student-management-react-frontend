@@ -29,21 +29,30 @@ class Student extends Component {
                   <td>{this.props.currentUser.location}</td>
                 </tr>
                 <tr>
-                  <th>Assignments:
-
-
-                  </th>
-                  <td> </td>
+                  <th>Assignments: </th>
+                    {this.props.userAssignments.map((assignment, index) => (
+                      <td>
+                        <ul>
+                          <li>Date: {assignment.date}</li>
+                          <li>Assignment: {assignment.content}</li>
+                          <li>Completed:
+                            <form>
+                              <input type="checkbox" name="completed" />
+                            </form>
+                          {assignment.completed}</li>
+                        </ul>
+                      </td>
+                    ))}
                 </tr>
               </tbody>
             </table>
             <br/>
-            <button onClick={this.props.handleLogOut}>
+            <button onClick={ this.props.handleLogOut }>
               Sign Out
             </button>
             <br/>
             <br/>
-            <button onClick={() => this.props.handleDeleteUser(user)}>
+            <button onClick={ () => this.props.handleDeleteUser(user) }>
               Delete Account
             </button>
           </>
@@ -54,7 +63,6 @@ class Student extends Component {
             </h3>
           </>
         }
-
       </div>
     )
   }
