@@ -6,6 +6,28 @@ const cookies = new Cookies()
 let user = cookies.get('user')
 
 class Student extends Component {
+
+  handleCompletedChange = (event) => {
+    const assignment_id = event.target.id
+    console.log(event.target.checked)
+    fetch('/assignments/' + assignment_id, {
+      body: JSON.stringify({
+        completed:
+
+            event.target.checked ?
+            true :
+            false
+
+      }),
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
     return(
       <div>
@@ -28,24 +50,37 @@ class Student extends Component {
                   <th>Location: </th>
                   <td>{this.props.currentUser.location}</td>
                 </tr>
-                <tr>
-                  <th>Assignments: </th>
-                    {this.props.userAssignments.map((assignment, index) => (
-                      <td>
-                        <ul>
-                          <li>Date: {assignment.date}</li>
-                          <li>Assignment: {assignment.content}</li>
-                          <li>Completed:
-                            <form>
-                              <input type="checkbox" name="completed" />
-                            </form>
-                          {assignment.completed}</li>
-                        </ul>
-                      </td>
-                    ))}
-                </tr>
               </tbody>
             </table>
+            <p>Assignments: </p>
+            {this.props.userAssignments.map((assignment) => (
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <ul>
+                        <li>{assignment.date}</li>
+                        <li>{assignment.content}</li>
+                        <li>Completed:
+                          <form>
+                            <input
+                              type="checkbox"
+                              name="completed"
+                              id={assignment.id}
+
+                              checked={
+                                assignment.completed
+                              }
+                              onChange={this.handleCompletedChange}
+                              />
+                          </form>
+                        {assignment.completed}</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
             <br/>
             <button onClick={ this.props.handleLogOut }>
               Sign Out
