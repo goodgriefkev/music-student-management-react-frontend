@@ -11,30 +11,15 @@ class Student extends Component {
     loggedIn: false,
   }
 
-  componentDidMount() {
-    this.getData()
-  }
-
-  getData = () => {
-    this.setState({
-      loggedIn: this.props.loggedIn
-    })
-    console.log(this.props.loggedIn)
-    console.log(this.state)
-  }
-
   handleCompletedChange = (event) => {
-    event.preventDefault()
     const assignment_id = event.target.id
     console.log(event.target.checked)
     fetch('/assignments/' + assignment_id, {
       body: JSON.stringify({
         completed:
-
             event.target.checked ?
             true :
             false
-
       }),
       method: 'PATCH',
       headers: {
@@ -42,6 +27,7 @@ class Student extends Component {
         'Content-Type': 'application/json'
       }
     })
+    .then(this.forceUpdate())
     .catch(error => console.log(error))
   }
 
@@ -75,15 +61,15 @@ class Student extends Component {
               </tbody>
             </table>
             <p>Assignments: </p>
-            {this.props.userAssignments.map((assignment) => (
-              <table>
+            {this.props.userAssignments.map((assignment, i) => (
+              <table key={i}>
                 <tbody>
                   <tr>
                     <td>
-                      <ul>
-                        <li>{assignment.date}</li>
-                        <li>{assignment.content}</li>
-                        <li>Completed:
+                      <div>
+                        <h4>Date: {assignment.date}</h4>
+                        <h4>Assignment: {assignment.content}</h4>
+                        <h4>Completed:
                           <form>
                             <input
                               type="checkbox"
@@ -96,8 +82,8 @@ class Student extends Component {
                               onChange={this.handleCompletedChange}
                               />
                           </form>
-                        {assignment.completed}</li>
-                      </ul>
+                        {assignment.completed}</h4>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -113,9 +99,6 @@ class Student extends Component {
               Delete Account
             </button>
             <br />
-            <button onClick={ this.getData }>
-              magic button
-            </button>
           </>
           :
           <>
