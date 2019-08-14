@@ -59,12 +59,6 @@ class App extends Component {
     this.setState({loggedIn: true})
   }
 
-  checkCurrentUser = () => {
-    if (user) {
-      this.getCurrentUser(user)
-    }
-  }
-
   getCurrentUser = (user_id) => {
     fetch('/users/' + user_id, {
       method: 'GET',
@@ -81,6 +75,12 @@ class App extends Component {
     .then( () => {
       this.handleLogIn()
     })
+  }
+
+  checkCurrentUser = () => {
+    if (user) {
+      this.getCurrentUser(user)
+    }
   }
 
   handleLogOut = () => {
