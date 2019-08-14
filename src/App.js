@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {
+        Jumbotron,
+        Container } from 'reactstrap'
 import Cookies from 'universal-cookie'
 
 import CreateAccount from './components/CreateAccount.js'
@@ -107,8 +110,12 @@ class App extends Component {
       <>
         <Router>
           <div>
-            <h1>Stephen Gilbert Musical Instruction</h1>
-            <h2>Student Portal</h2>
+            <Jumbotron fluid>
+              <Container fluid>
+                <h1>Stephen Gilbert Musical Instruction</h1>
+                <p>Student Portal</p>
+              </Container>
+            </Jumbotron>
 
             <Route exact
               path='/'
