@@ -81,9 +81,9 @@ class Student extends Component {
             <br/>
             {this.props.userAssignments.map((assignment, i) => (
               <div key={i}>
-                <h5>Date: {assignment.date}</h5>
-                <h5>Assignment: {assignment.content}</h5>
-                <h5>Completed:
+                <h6>Date: {assignment.date}</h6>
+                <h6>Assignment: {assignment.content}</h6>
+                <h6>Completed:
                   <form>
                     <input
                       type="checkbox"
@@ -96,7 +96,7 @@ class Student extends Component {
                       onChange={this.handleCompletedChange}
                       />
                   </form>
-                {assignment.completed}</h5>
+                {assignment.completed}</h6>
               </div>
             ))}
             <br/>
