@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
+import {
+  Container,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap'
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
@@ -39,11 +48,18 @@ class Student extends Component {
   render() {
     return(
       <div>
+      <Container>
         {this.props.currentUser ?
           <>
-            <h2>
-              You are logged in as {this.props.currentUser.username}
-            </h2>
+            <div style={{ textAlign: 'right' }}>
+              <h4>
+                user {this.props.currentUser.username}
+              </h4>
+
+              <button onClick={ this.logOut }>
+                Sign Out
+              </button>
+            </div>
             <table>
               <tbody>
                 <tr>
@@ -60,45 +76,37 @@ class Student extends Component {
                 </tr>
               </tbody>
             </table>
-            <p>Assignments: </p>
+            <b>Assignments: </b>
+            <br/>
+            <br/>
             {this.props.userAssignments.map((assignment, i) => (
-              <table key={i}>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div>
-                        <h4>Date: {assignment.date}</h4>
-                        <h4>Assignment: {assignment.content}</h4>
-                        <h4>Completed:
-                          <form>
-                            <input
-                              type="checkbox"
-                              name="completed"
-                              id={assignment.id}
+              <div key={i}>
+                <h5>Date: {assignment.date}</h5>
+                <h5>Assignment: {assignment.content}</h5>
+                <h5>Completed:
+                  <form>
+                    <input
+                      type="checkbox"
+                      name="completed"
+                      id={assignment.id}
 
-                              checked={
-                                assignment.completed
-                              }
-                              onChange={this.handleCompletedChange}
-                              />
-                          </form>
-                        {assignment.completed}</h4>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      checked={
+                        assignment.completed
+                      }
+                      onChange={this.handleCompletedChange}
+                      />
+                  </form>
+                {assignment.completed}</h5>
+              </div>
             ))}
             <br/>
-            <button onClick={ this.logOut }>
-              Sign Out
-            </button>
             <br/>
             <br/>
             <button onClick={ () => this.props.handleDeleteUser(user) }>
               Delete Account
             </button>
-            <br />
+            <br/>
+            <br/>
           </>
           :
           <>
@@ -107,6 +115,7 @@ class Student extends Component {
             </h3>
           </>
         }
+        </Container>
       </div>
     )
   }

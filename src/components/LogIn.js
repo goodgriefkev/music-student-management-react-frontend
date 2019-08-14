@@ -1,4 +1,12 @@
 import React, { Component } from 'react'
+import {
+  Container,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap'
 
 import Cookies from 'universal-cookie'
 
@@ -68,31 +76,34 @@ class LogIn extends Component {
   render() {
     return (
       <div>
-        <h2>Sign In</h2>
-        <form onSubmit={this.handleSubmitLogIn}>
-          <label>
-            <input
-              type='text'
-              name='username'
-              id='username'
-              onChange={this.handleChange}
-              value={this.state.username}
-              placeholder='Username'
+        <h4 textalign='center'>Sign In</h4>
+        <Form onSubmit={this.handleSubmitLogIn}>
+          <FormGroup>
+            <Label for="username"></Label>
+              <Input
+                type='text'
+                name='username'
+                id='username'
+                onChange={this.handleChange}
+                value={this.state.username}
+                placeholder='Username'
+              />
+            <Label for="password"></Label>
+              <Input
+                type='password'
+                name='password'
+                id='password'
+                onChange={this.handleChange}
+                value={this.state.password}
+                placeholder='Password'
+              />
+
+            <Input
+              type='submit'
+              value='Sign In'
             />
-            <input
-              type='password'
-              name='password'
-              id='password'
-              onChange={this.handleChange}
-              value={this.state.password}
-              placeholder='Password'
-            />
-          </label>
-          <input
-            type='submit'
-            value='Sign In'
-          />
-        </form>
+          </FormGroup>
+        </Form>
         {
           this.state.credentialError ?
           <h2>Username or Password Incorrect</h2> :
