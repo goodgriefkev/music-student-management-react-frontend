@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/music-student-management-react-frontend/precache-manifest.cbe900d5136bca6d619bfc57a6d0ac53.js"
+  "/music-student-management-react-frontend/precache-manifest.873b6d14695623d0e761beb9beb26100.js"
 );
 
 self.addEventListener('message', (event) => {
