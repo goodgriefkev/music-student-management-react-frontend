@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as HashRouter, Route } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 import {
         Jumbotron,
         Container } from 'reactstrap'
