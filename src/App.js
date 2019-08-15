@@ -4,7 +4,7 @@ import {
         Jumbotron,
         Container } from 'reactstrap'
 import Cookies from 'universal-cookie'
-
+import { BASE_URL } from './constants.js'
 import CreateAccount from './components/CreateAccount.js'
 import LogIn from './components/LogIn.js'
 import Student from './components/Student.js'
@@ -13,7 +13,7 @@ import Student from './components/Student.js'
 
 import './App.css';
 
-const baseURL = 'http://localhost:3000'
+const baseURL = BASE_URL
 const cookies = new Cookies()
 let token = cookies.get('token')
 let user = cookies.get('user')
@@ -46,7 +46,7 @@ class App extends Component {
     let assignmentData = {
       singleUserAssignments: []
     }
-    fetch('/assignments')
+    fetch(baseURL + '/assignments')
       .then(response => response.json())
       .then(json => {
         json.map((assignment) => {
@@ -65,7 +65,7 @@ class App extends Component {
   }
 
   getCurrentUser = (user_id) => {
-    fetch('/users/' + user_id, {
+    fetch(baseURL + '/users/' + user_id, {
       method: 'GET',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -95,7 +95,7 @@ class App extends Component {
   }
 
   handleDeleteUser = (user_id) => {
-    fetch('/users/' + user_id, {
+    fetch(baseURL + '/users/' + user_id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json, text/plain, */*',

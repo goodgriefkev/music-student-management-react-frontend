@@ -11,6 +11,9 @@ import {
 } from 'reactstrap'
 import Cookies from 'universal-cookie'
 
+import { BASE_URL } from '../constants.js'
+
+const baseURL = BASE_URL
 const cookies = new Cookies()
 let user = cookies.get('user')
 
@@ -23,7 +26,7 @@ class Student extends Component {
   handleCompletedChange = (event) => {
     const assignment_id = event.target.id
     console.log(event.target.checked)
-    fetch('/assignments/' + assignment_id, {
+    fetch(baseURL + '/assignments/' + assignment_id, {
       body: JSON.stringify({
         completed:
             event.target.checked ?

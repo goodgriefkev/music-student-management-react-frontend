@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+import { BASE_URL } from '../constants.js'
+
+const baseURL = BASE_URL
+
 class CreateAccount extends Component {
 
   state = {
@@ -22,7 +26,7 @@ class CreateAccount extends Component {
     if (password !== confirmPassword) {
       alert("Passwords do not match, please try again")
     } else {
-      fetch('/users', {
+      fetch(baseURL + '/users', {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',

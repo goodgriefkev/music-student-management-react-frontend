@@ -11,6 +11,9 @@ import {
 
 import Cookies from 'universal-cookie'
 
+import { BASE_URL } from '../constants.js'
+
+const baseURL = BASE_URL
 const cookies = new Cookies()
 
 let user = cookies.get('user')
@@ -34,7 +37,7 @@ class LogIn extends Component {
 
   handleSubmitLogIn = (event) => {
     event.preventDefault();
-    fetch('/users/login', {
+    fetch(baseURL + '/users/login', {
       body:
         JSON.stringify({
           user: {
