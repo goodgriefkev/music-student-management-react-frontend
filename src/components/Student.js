@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import {
-  Container,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
+  Container
 } from 'reactstrap'
 import Cookies from 'universal-cookie'
 
