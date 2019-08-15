@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as HashRouter, Route } from 'react-router-dom'
 import {
         Jumbotron,
         Container } from 'reactstrap'
@@ -110,7 +110,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
+        <HashRouter>
           <div>
             <Jumbotron fluid>
               <Container fluid>
@@ -156,7 +156,7 @@ class App extends Component {
               )}
             />
           </div>
-        </Router>
+        </HashRouter>
       </>
     )
   }

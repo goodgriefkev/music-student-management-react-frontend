@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class CreateAccount extends Component {
 
@@ -40,6 +41,7 @@ class CreateAccount extends Component {
       })
         .then(response => response.json())
         .then(json => {console.log(json)})
+        .then(this.props.history.push('/'))
     }
   }
 
