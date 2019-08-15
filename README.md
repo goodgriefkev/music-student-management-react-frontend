@@ -4,7 +4,7 @@ React front end with full CRUD access to Ruby on Rails backend.
 Purpose: to allow music teachers to assign and track student's practice assignments, and for students to view practice assignments and mark them complete.
 
 # Live Site Link  
-[Stephen Gilbert Musical Instruction]  
+[Stephen Gilbert Musical Instruction](https://goodgriefkev.github.io/music-student-management-react-frontend/)
 
 # Technologies Used
 Initialized with Create React App
