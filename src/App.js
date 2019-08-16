@@ -29,9 +29,9 @@ class App extends Component {
 
   componentDidMount() {
     // this.getStudents()
-    // this.getAssignments()
+    this.getAssignments()
     // this.getCurrentUser()
-    // this.checkCurrentUser()
+    this.checkCurrentUser()
   }
 
   // getStudents () {
@@ -68,8 +68,6 @@ class App extends Component {
   handleLogIn = () => {
     console.log("handleLogIn ran")
     this.toggleLoggedIn()
-    this.getAssignments()
-    this.getCurrentUser(this.user)
   }
 
   getCurrentUser = (user_id) => {
@@ -84,6 +82,9 @@ class App extends Component {
     .then(response => response.json())
     .then(json => {
       this.setState({currentUser: json})
+    })
+    .then( () => {
+      this.handleLogIn()
     })
   }
 

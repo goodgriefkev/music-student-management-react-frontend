@@ -63,7 +63,7 @@ class LogIn extends Component {
             password: '',
             credentialError: false
           })
-          this.props.history.push('/student')
+          .then( () => this.props.history.push('/student'))
 
         } else {
           this.setState({
