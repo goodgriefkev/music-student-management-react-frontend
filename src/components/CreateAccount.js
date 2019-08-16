@@ -42,9 +42,7 @@ class CreateAccount extends Component {
             }
           })
       })
-        .then(response => response.json())
-        .then(json => {console.log(json)})
-        .then(this.props.history.push('/'))
+        .then( () => this.props.history.push('/'))
     }
   }
 
