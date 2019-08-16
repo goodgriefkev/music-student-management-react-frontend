@@ -57,12 +57,13 @@ class LogIn extends Component {
           cookies.set('token', json.token, { path: '/' })
 
           this.props.handleLogIn()
+
           this.setState({
             username: '',
             password: '',
             credentialError: false
           })
-    this.props.history.push('/student')
+          this.props.history.push('/student')
 
         } else {
           this.setState({
