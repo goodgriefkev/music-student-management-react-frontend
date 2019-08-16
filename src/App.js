@@ -89,8 +89,9 @@ class App extends Component {
   }
 
   handleLogOut = () => {
-    cookies.remove('token')
-    cookies.remove('user')
+    console.log("handleLogOut ran")
+    cookies.remove('token', { path: '/' })
+    cookies.remove('user', { path: '/' })
     this.setState({loggedIn: false})
   }
 
