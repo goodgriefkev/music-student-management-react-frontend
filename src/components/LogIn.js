@@ -55,7 +55,6 @@ class LogIn extends Component {
         if (json.user) {
           cookies.set('user', json.user.id, { path: '/' })
           cookies.set('token', json.token, { path: '/' })
-          this.props.getCurrentUser(json.user.id)
 
           this.props.handleLogIn()
           this.setState({

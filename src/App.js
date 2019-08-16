@@ -59,9 +59,15 @@ class App extends Component {
       .catch(error => console.error(error))
   }
 
+  toggleLoggedIn = () => {
+    this.setState({
+      loggedIn: !this.state.loggedIn
+    })
+  }
+
   handleLogIn = () => {
-    console.log("handle log in ran")
-    this.setState({loggedIn: true})
+    console.log("handleLogIn ran")
+    this.toggleLoggedIn
   }
 
   getCurrentUser = (user_id) => {
