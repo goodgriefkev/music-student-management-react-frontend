@@ -39,7 +39,9 @@ class Student extends Component {
 
   logOut = () => {
     this.props.handleLogOut()
-    return <Redirect to='/' />
+    this.setState({loggedIn: false})
+    this.props.history.push('/')
+
   }
 
   render() {
