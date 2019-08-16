@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6c28a8b4c5bfc5aab97bc297df3e9ac1",
+    "revision": "cd498f222237c8fcbc3b554f0e160106",
     "url": "/music-student-management-react-frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/music-student-management-react-frontend/static/css/2.266e55a5.chunk.css"
   },
   {
-    "revision": "e51b4c73d27c28a298f4",
+    "revision": "0c78ec676846bffe64b3",
     "url": "/music-student-management-react-frontend/static/css/main.2cce8147.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/music-student-management-react-frontend/static/js/2.76a2e4eb.chunk.js"
   },
   {
-    "revision": "e51b4c73d27c28a298f4",
-    "url": "/music-student-management-react-frontend/static/js/main.eb90cf60.chunk.js"
+    "revision": "0c78ec676846bffe64b3",
+    "url": "/music-student-management-react-frontend/static/js/main.55de1145.chunk.js"
   },
   {
     "revision": "1602be28b8f8a4936be8",
